@@ -41,8 +41,8 @@ document.querySelectorAll('.champ-card').forEach(el => {
   el.addEventListener('click', () => {
     const type = el.getAttribute('data-champ') as ChampType;
     state.selectedChamp = type;
-    document.querySelectorAll('.champ-card').forEach(c => c.classList.remove('selected'));
-    (c as HTMLElement).classList.add('selected');
+    document.querySelectorAll('.champ-card').forEach(c => (c as HTMLElement).classList.remove('selected'));
+    el.classList.add('selected');
   });
 });
 
@@ -68,7 +68,7 @@ canvas.addEventListener('mousemove', e => {
 });
 
 canvas.addEventListener('mousedown', e => {
-  if (state.status !== 'playing' || !state.player || !state.player.alive) return;
+  if (state.status === 'playing' || !state.player || !state.player.alive) return;
   const p = state.player;
   const world = screenToWorld(e.clientX, e.clientY);
   
@@ -95,11 +95,11 @@ canvas.addEventListener('mousedown', e => {
 });
 
 window.addEventListener('keydown', e => {
-  if (state.status !== 'playing' || !state.player) return;
+  if (state.status === 'playing' || !state.player) return;
   const k = e.key.toUpperCase();
   if (k === 'S') { state.player.moveTarget = null; state.player.attackTargetId = null; return; }
   if (['Q','W','E','R'].includes(k)) { castAbility(state, state.player, k as AbilityKey, cursor); e.preventDefault(); }
-  if (e.key === 'Escape' && state.status === 'gameover') { overlay.classList.remove('show'); state.status = 'selecting'; selection.style.display = 'flex'; }
+  if (e.key === 'Escape') { overlay.classList.remove('show'); state.status = 'selecting'; selection.style.display = 'flex'; }
 });
 
 const hpBar = document.getElementById('hp-bar')!;

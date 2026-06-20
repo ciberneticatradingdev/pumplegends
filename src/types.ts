@@ -109,7 +109,7 @@ export interface GameState {
   redNexus: Entity | null;
   blueInhib: Entity | null;
   redInhib: Entity | null;
-  status: 'menu' | 'selecting' | 'playing' | 'gameover' as any;
+  status: 'menu' | 'selecting' | 'playing' | 'gameover';
   winner: Team | null;
   blueKills: number;
   redKills: number;
