@@ -37,12 +37,12 @@ const selection = document.getElementById('selection')!;
 const startBtn = document.getElementById('start-btn')!;
 const overlay = document.getElementById('overlay')!;
 
-document.querySelectorAll('.champ-card').forEach((el: any) => {
+document.querySelectorAll('.champ-card').forEach(el => {
   el.addEventListener('click', () => {
     const type = el.getAttribute('data-champ') as ChampType;
     state.selectedChamp = type;
     document.querySelectorAll('.champ-card').forEach(c => c.classList.remove('selected'));
-    el.classList.add('selected');
+    (c as HTMLElement).classList.add('selected');
   });
 });
 
